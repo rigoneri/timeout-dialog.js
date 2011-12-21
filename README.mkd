@@ -1,0 +1,16 @@
+timeout-dialog.js
+=================
+
+Timeout-dialog.js is a JQuery plugin that displays a timeout popover after a certain period of time. The timeout dialog should be used whenever you want to display to the user that the logged in session is about to expire. It creates a light box with a countdown and options to stay signed in or sign out.
+
+Example and Documentation
+-------------------------
+
+[timeout-dialog.js examples](http://rigoneri.github.com/timeout-dialog.js)
+
+
+Credit
+------
+
+timeout-dialog.js was developed by [@rigoneri]
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Timeout Dialog</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/timeout-dialog.js"></script>
+<link rel="stylesheet" href="css/index.css" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="css/timeout-dialog.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+<div class="container">
+  <h1>Timeout-Dialog.js</h1>
+  <p><strong>Timeout-dialog.js</strong> is a JQuery plugin that displays a timeout popover after a certain period of time. The timeout dialog should be used whenever you want to display to the user that the logged in session is about to expire. It creates a light box with a countdown and options to stay signed in or sign out.</p>
+  <p>You can download the timeout-dialog.js project from <a href="http://github.com/rigoneri/timeout-dialog.js">GitHub</a>.</p>
+  <h2>Examples</h2>
+  <div>
+    <a href="#" id="timeout-example">Click Here to See Demo</a>
+  </div>
+  <h2>How to use</h2>
+  <code class="code">$.timeoutDialog();</code>
+  <h3>Options</h3>
+  <table class="standard-table">
+    <thead>
+     <tr>
+       <th>Name</th>
+       <th>Type</th>
+       <th width="170">Default</th>
+       <th>Description</th>
+     </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>timeout</strong></td>
+        <td>number</td>
+        <td>1200</td>
+        <td>The number of your session timeout (in seconds). The timeout value minus the countdown value determines how long until the dialog appears.</td>
+      </tr>
+      <tr>
+        <td><strong>countdown</strong></td>
+        <td>number</td>
+        <td>60</td>
+        <td>The countdown total value (in seconds).</td>
+      </tr>
+      <tr>
+        <td><strong>title</strong></td>
+        <td>string</td>
+        <td>'Your session is about to expire!'</td>
+        <td>The title message in the dialog box.</td>
+      </tr>
+      <tr>
+        <td><strong>message</strong></td>
+        <td>string</td>
+        <td>'You will be logged out in {0} seconds.'</td>
+        <td>The countdown message where <code>{0}</code> will be used to enter the countdown value.</td>
+      </tr>
+      <tr>
+        <td><strong>question</strong></td>
+        <td>string</td>
+        <td>'Do you want to stay signed in?'</td>
+        <td>The question message if they want to continue using the site or not.</td>
+      </tr>
+      <tr>
+        <td><strong>keep_alive_button_text</strong></td>
+        <td>string</td>
+        <td>'Yes, Keep me signed in'</td>
+        <td>The text of the YES button to keep the session alive.</td>
+      </tr>
+      <tr>
+        <td><strong>sign_out_button_text</strong></td>
+        <td>string</td>
+        <td>'No, Sign me out'</td>
+        <td>The text of the NO button to kill the session.</td>
+      </tr>
+      <tr>
+        <td><strong>keep_alive_url</strong></td>
+        <td>string</td>
+        <td>/keep-alive</td>
+        <td>The url that will perform a GET request to keep the session alive. This GET expects a 'OK' plain HTTP response.</td>
+      </tr>
+      <tr>
+        <td><strong>logout_url</strong></td>
+        <td>string</td>
+        <td>null</td>
+        <td>The url that will perform a POST request to kill the session. If no logout_url is defined it will just redirect to the url defined in logout_redirect_url.</td>
+      </tr>
+      <tr>
+        <td><strong>logout_redirect_url</strong></td>
+        <td>string</td>
+        <td>/</td>
+        <td>The redirect url after the logout happens, usually back to the login url. It will also contain a <code>next</code> query param with the url that they were when timedout and a <code>timeout=t</code> query param indicating if it was from a timeout, this value will not be set if the user clicked the 'No, Sign me out' button.</td>
+      </tr>
+      <tr>
+        <td><strong>restart_on_yes</strong></td>
+        <td>boolean</td>
+        <td>true</td>
+        <td>A boolean value that indicates if the countdown will restart when the user clicks the 'keep session alive' button.</td>
+      </tr>
+      <tr>
+        <td><strong>dialog_width</strong></td>
+        <td>number</td>
+        <td>350</td>
+        <td>The width of the dialog box.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Credit</h2>
+  <p>Written by <a href="http://twitter.com/rigoneri">@rigoneri</a></p>
+<script type="text/javascript">
+/*<![CDATA[*/
+$(function () {
+ $("#timeout-example").click(function(e) {
+   e.preventDefault();
+   $.timeoutDialog({timeout: 1, countdown: 60, logout_redirect_url: 'https://github.com/rigoneri/timeout-dialog.js', restart_on_yes: false});
+ });
+});
+/*]]>*/
+</script>
+</body>
+</html>
