@@ -1,5 +1,5 @@
 /*
- * timeout-dialog.js v1.0.0, 12-21-2011
+ * timeout-dialog.js v1.0.1, 01-03-2012
  * 
  * @author: Rodrigo Neri (@rigoneri)
  * 
@@ -168,7 +168,7 @@ String.prototype.format = function() {
       }, 
 
       redirectLogout: function(is_forced){
-        var target = settings.logout_redirect_url + '?next=' + encodeURIComponent(window.location.pathname);
+        var target = settings.logout_redirect_url + '?next=' + encodeURIComponent(window.location.pathname + window.location.search);
         if (!is_forced)
           target += '&timeout=t';
         window.location = target;
