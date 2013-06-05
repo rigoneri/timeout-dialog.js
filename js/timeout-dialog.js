@@ -1,33 +1,33 @@
 /*
  * timeout-dialog.js v1.0.1, 01-03-2012
- * 
+ *
  * @author: Rodrigo Neri (@rigoneri)
- * 
+ *
  * (The MIT License)
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE. 
+ * THE SOFTWARE.
  */
 
 
 /* String formatting, you might want to remove this if you already use it.
  * Example:
- * 
+ *
  * var location = 'World';
  * alert('Hello {0}'.format(location));
  */
@@ -57,14 +57,14 @@ String.prototype.format = function() {
       logout_redirect_url: '/',
       restart_on_yes: true,
       dialog_width: 350
-    }    
+    }
 
     $.extend(settings, options);
 
     var TimeoutDialog = {
       init: function () {
         this.setupDialogTimer();
-      }, 
+      },
 
       setupDialogTimer: function() {
         var self = this;
@@ -78,7 +78,7 @@ String.prototype.format = function() {
         self.destroyDialog();
 
         $('<div id="timeout-dialog">' +
-            '<p id="timeout-message">' + settings.message.format('<span id="timeout-countdown">' + settings.countdown + '</span>') + '</p>' + 
+            '<p id="timeout-message">' + settings.message.format('<span id="timeout-countdown">' + settings.countdown + '</span>') + '</p>' +
             '<p id="timeout-question">' + settings.question + '</p>' +
           '</div>')
         .appendTo('body')
@@ -93,7 +93,7 @@ String.prototype.format = function() {
           dialogClass: 'timeout-dialog',
           title: settings.title,
           buttons : {
-            'keep-alive-button' : { 
+            'keep-alive-button' : {
               text: settings.keep_alive_button_text,
               id: "timeout-keep-signin-btn",
               click: function() {
@@ -165,7 +165,7 @@ String.prototype.format = function() {
         else {
             self.redirectLogout(is_forced);
         }
-      }, 
+      },
 
       redirectLogout: function(is_forced){
         var target = settings.logout_redirect_url + '?next=' + encodeURIComponent(window.location.pathname + window.location.search);
