@@ -79,9 +79,12 @@ String.prototype.format = function() {
 				
 				var initialTimeDisplay = settings.countdown;
 				if(settings.display_minutes_and_seconds) {
-					initialTimeDisplay = Math.floor(settings.countdown/60) + ":" + settings.countdown%60;
+					seconds = settings.countdown%60;
+					if(seconds === 0) {
+						seconds = "00";
+					}
+					initialTimeDisplay = Math.floor(settings.countdown/60) + ":" + seconds;
 				}
-				
 
 				$(
 						'<div id="timeout-dialog">'
@@ -168,7 +171,7 @@ String.prototype.format = function() {
 				window.clearInterval(this.countdown);
 
 				$.get(settings.keep_alive_url, function(data) {
-					if (data == "na!, na!, na!, na!, stayin alive!") {
+					if (data == "OK") {
 						if (settings.restart_on_yes) {
 							self.setupDialogTimer();
 						}
