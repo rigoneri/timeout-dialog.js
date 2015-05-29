@@ -42,6 +42,10 @@ String.prototype.format = function() {
 };
 
 !function($) {
+  
+  var $globalTimeoutSettings = {}, 
+      sessionTimeoutHandle;
+  
   $.timeoutDialog = function(options) {
 
     var settings = {
@@ -57,10 +61,11 @@ String.prototype.format = function() {
       logout_redirect_url: '/',
       restart_on_yes: true,
       dialog_width: 350
-    }    
-
-    $.extend(settings, options);
-
+    };
+    
+    $.extend($globalTimeoutSettings, options);
+    options = $.extend(settings, $globalTimeoutSettings);
+    
     var TimeoutDialog = {
       init: function () {
         this.setupDialogTimer();
@@ -68,7 +73,8 @@ String.prototype.format = function() {
 
       setupDialogTimer: function() {
         var self = this;
-        window.setTimeout(function() {
+        window.clearTimeout(sessionTimeoutHandle);
+        sessionTimeoutHandle = window.setTimeout(function() {
            self.setupDialog();
         }, (settings.timeout - settings.countdown) * 1000);
       },
@@ -178,3 +184,4 @@ String.prototype.format = function() {
     TimeoutDialog.init();
   };
 }(window.jQuery);
+
