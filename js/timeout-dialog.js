@@ -42,8 +42,7 @@ String.prototype.format = function() {
 };
 
 !function($) {
-  $.timeoutDialog = function(options) {
-
+  $.timeoutDialog = function(document, options) {
     var settings = {
       timeout: 1200,
       countdown: 60,
@@ -61,16 +60,28 @@ String.prototype.format = function() {
 
     $.extend(settings, options);
 
+	var timeoutID;
     var TimeoutDialog = {
-      init: function () {
+      init: function (document) {
+    	  console.log("TimeoutDialog - init - start");
+
         this.setupDialogTimer();
+        
+	    document.addEventListener("mousemove", this.setupDialogTimer, false);
+	  	document.addEventListener("mousedown", this.setupDialogTimer, false);
+	  	document.addEventListener("keypress", this.setupDialogTimer, false);
+	  	document.addEventListener("DOMMouseScroll", this.setupDialogTimer, false);
+	  	document.addEventListener("mousewheel", this.setupDialogTimer, false);
+	  	document.addEventListener("touchmove", this.setupDialogTimer, false);
+	  	document.addEventListener("MSPointerMove", this.setupDialogTimer, false);  	  
       }, 
 
       setupDialogTimer: function() {
         var self = this;
-        window.setTimeout(function() {
-           self.setupDialog();
-        }, (settings.timeout - settings.countdown) * 1000);
+        window.clearTimeout(timeoutID);
+        timeoutID = window.setTimeout(function() {
+        	TimeoutDialog.setupDialog();
+			        }, (settings.timeout - settings.countdown) * 1000);
       },
 
       setupDialog: function() {
@@ -175,6 +186,6 @@ String.prototype.format = function() {
       }
     };
 
-    TimeoutDialog.init();
+    TimeoutDialog.init(document);
   };
 }(window.jQuery);
